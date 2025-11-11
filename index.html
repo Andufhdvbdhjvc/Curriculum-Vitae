@@ -1,0 +1,2815 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portofolio — Achmad Andi Prayoga</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <style>
+        /* Minimal, modern portfolio styles */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --bg: #0f1724; /* deep navy */
+  --card: #0b1220;
+  --muted: #98a0b3;
+  --accent: #5eead4; /* teal */
+  --glass: rgba(255, 255, 255, 0.04);
+  --radius: 12px;
+  --max: 1100px;
+  --gap: 1.25rem;
+  --font-heading: "Orbitron", sans-serif;
+  --font-body: "Space Grotesk", sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+}
+/* Language visibility: only show elements with the active language
+   We set a class on the <html> element: site-lang-id | site-lang-en | site-lang-nl
+   Any element with a `lang` attribute will only be shown when its lang matches the active class.
+*/
+[class*="site-lang-"] [lang] {
+  display: none;
+}
+.site-lang-id [lang="id"] {
+  display: inline;
+}
+.site-lang-en [lang="en"] {
+  display: inline;
+}
+.site-lang-nl [lang="nl"] {
+  display: inline;
+}
+
+/* For block-level translated elements (divs) ensure they render as block when active */
+.site-lang-id [lang="id"][class*="translation"],
+.site-lang-en [lang="en"][class*="translation"],
+.site-lang-nl [lang="nl"][class*="translation"] {
+  display: block;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #071024 0%, #07142a 60%);
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+.brand {
+  font-family: var(--font-heading);
+  letter-spacing: 0.02em;
+}
+
+.info-label,
+.btn {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Animasi scroll */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.scroll-animate.visible {
+  animation: fadeInUp 0.6s ease forwards;
+}
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2rem;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+/* Language selector */
+.lang-selector {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.lang-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.lang-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+}
+.lang-btn.active {
+  border-color: rgba(94, 234, 212, 0.3);
+  box-shadow: 0 6px 20px rgba(94, 234, 212, 0.08);
+}
+.lang-btn .flag {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.lang-btn .flag svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.brand {
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.social-links {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+.social-link {
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.social-link:hover {
+  color: var(--accent);
+  background: rgba(94, 234, 212, 0.08);
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(94, 234, 212, 0.2);
+  box-shadow: 0 4px 20px rgba(94, 234, 212, 0.1);
+}
+.social-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.header-inner .social-link {
+  padding: 0.35rem 0.5rem;
+  background: transparent;
+  border: none;
+}
+.header-inner .social-icon {
+  width: 22px;
+  height: 22px;
+}
+.social-icon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.2s ease;
+}
+.social-link:hover .social-icon {
+  transform: scale(1.1);
+}
+.footer-content .social-link {
+  background: var(--card);
+  padding: 0.75rem 1.25rem;
+}
+@media (max-width: 600px) {
+  .header-inner .social-name {
+    display: none;
+  }
+  .social-links {
+    gap: 0.75rem;
+  }
+  .social-link {
+    padding: 0.4rem;
+  }
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .footer-content .social-link {
+    padding: 0.6rem 1rem;
+  }
+}
+.btn {
+  border: 0;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent), #34d399);
+  color: #042028;
+}
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+}
+.site-header {
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.6), transparent);
+  z-index: 10;
+}
+.hero {
+  padding: 4rem 0;
+}
+.hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-info-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(94, 234, 212, 0.1);
+}
+
+.hero-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: visible;
+}
+
+.hero-title h1 {
+  font-size: 2.15rem;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(90deg, var(--accent), #34d399);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.hero-bio {
+  margin-top: 1.5rem;
+}
+
+.bio-text {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.quick-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.info-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(94, 234, 212, 0.1);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--accent);
+  border: 1px solid rgba(94, 234, 212, 0.2);
+}
+
+.info-icon {
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .quick-info {
+    justify-content: center;
+  }
+
+  .bio-text {
+    text-align: center;
+    font-size: 1rem;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bio-section .lead {
+  margin: 0;
+  line-height: 1.6;
+}
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 4px solid rgba(94, 234, 212, 0.12);
+  box-shadow: 0 8px 26px rgba(2, 6, 23, 0.6);
+  transform: translateY(-30px) translateX(20px) rotate(-5deg);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: luminosity;
+  filter: contrast(1.1) brightness(1.1);
+}
+
+.profile-photo:hover {
+  transform: translateY(-35px) translateX(25px) rotate(-3deg);
+  mix-blend-mode: normal;
+}
+
+/* Container untuk foto */
+.hero-header {
+  position: relative;
+  margin-top: 30px; /* Kompensasi untuk foto yang keluar */
+}
+
+/* Tambahkan glow effect di belakang foto */
+.profile-photo::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, var(--accent), #34d399);
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0.3;
+  filter: blur(20px);
+  transition: opacity 0.3s ease;
+}
+
+.profile-photo:hover::after {
+  opacity: 0.5;
+}
+.profile-upload {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Profile image switcher thumbnails */
+.profile-switch {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  align-items: center;
+}
+.profile-switch .thumb {
+  width: 56px;
+  height: 56px;
+  padding: 2px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.02);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.profile-switch .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.profile-switch .thumb.active {
+  border-color: rgba(94, 234, 212, 0.35);
+  box-shadow: 0 6px 18px rgba(94, 234, 212, 0.08);
+}
+.profile-switch .thumb:focus {
+  outline: 3px solid rgba(94, 234, 212, 0.12);
+}
+.small {
+  font-size: 0.85rem;
+}
+.muted {
+  color: var(--muted);
+}
+.lead {
+  color: var(--muted);
+  max-width: 48ch;
+}
+.hero-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-collapsible {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.section-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.section-header h3 {
+  color: var(--accent);
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.toggle-icon {
+  transition: transform 0.3s ease;
+  color: var(--accent);
+}
+
+.section-collapsible.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.section-content {
+  padding: 0 1.25rem 1.25rem;
+  transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+  opacity: 1;
+}
+
+#personal-info {
+  padding: 4rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+#personal-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+#personal-info h2 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.cyber-bracket {
+  color: var(--accent);
+  opacity: 0.8;
+  margin: 0 0.5rem;
+}
+
+.info-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cyber-icon {
+  margin-right: 0.5rem;
+  color: var(--accent);
+}
+
+.cyber-line {
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.cyber-text {
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .info-sections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-collapsible.collapsed .section-content {
+  opacity: 0;
+}
+
+.info-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.info-item {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  background: rgba(94, 234, 212, 0.08);
+  transform: translateY(-2px);
+}
+
+.info-item {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  background: rgba(94, 234, 212, 0.08);
+  transform: translateX(5px);
+}
+
+.info-label {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  opacity: 0.9;
+  text-transform: uppercase;
+}
+
+.info-value {
+  font-family: var(--font-body);
+  color: var(--muted);
+  position: relative;
+  padding-left: 1rem;
+}
+
+.info-value::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+/* Animasi bertahap untuk info items */
+.scroll-animate-delay-1 {
+  animation-delay: 0.1s;
+}
+.scroll-animate-delay-2 {
+  animation-delay: 0.2s;
+}
+.scroll-animate-delay-3 {
+  animation-delay: 0.3s;
+}
+.scroll-animate-delay-4 {
+  animation-delay: 0.4s;
+}
+.scroll-animate-delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* Tambahan animasi untuk info items */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.info-item {
+  opacity: 0;
+  animation: slideInRight 0.5s ease forwards;
+}
+.about {
+  padding: 3rem 0;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 1.5rem;
+  align-items: start;
+}
+.projects {
+  padding: 3rem 0;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.project {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 12px;
+}
+.thumb {
+  height: 80px;
+  width: 80px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+.site-footer {
+  padding: 2rem 0;
+  color: var(--muted);
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+/* Projects section */
+.projects {
+  padding: 4rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+}
+
+.projects::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(94, 234, 212, 0.1);
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(94, 234, 212, 0.1);
+}
+
+.project-thumb {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project:hover .project-image {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content h3 {
+  color: var(--accent);
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.project-content p {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background: rgba(94, 234, 212, 0.1);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.project-link:hover {
+  color: var(--accent);
+}
+
+.project-link .icon {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-content {
+    padding: 1rem;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.contact-form-section {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: var(--radius);
+}
+
+.dev-skills-section {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: var(--radius);
+  position: sticky;
+  top: 100px;
+}
+
+.dev-skills-section h3 {
+  color: var(--accent);
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+}
+
+.dev-skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dev-skills-list li {
+  color: var(--muted);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dev-skills-list li:last-child {
+  border-bottom: none;
+}
+
+.dev-skills-list li::before {
+  content: ">";
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dev-skills-section {
+    position: static;
+  }
+}
+.contact-form label {
+  display: block;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: transparent;
+  color: inherit;
+}
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+@media (max-width: 900px) {
+  .hero-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .hero-title h1 {
+    font-size: 1.8rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+/* Education section */
+.education-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.edu-item {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 12px;
+}
+.edu-item h3 {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+}
+.edu-item p {
+  color: var(--muted);
+  margin: 0.25rem 0;
+}
+.edu-item ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+@media (max-width: 900px) {
+  .education-list {
+    grid-template-columns: 1fr;
+  }
+}
+/* Skills */
+.skills-block {
+  margin-top: 1.25rem;
+}
+.skills-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.soft-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+.software-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--card);
+  padding: 0.6rem;
+  border-radius: 10px;
+}
+.skill .icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  color: #cfeee5;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  padding: 6px;
+  border-radius: 8px;
+}
+.skill span {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+@media (max-width: 900px) {
+  .soft-grid {
+    grid-template-columns: 1fr;
+  }
+  .software-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .skill {
+    padding: 0.5rem;
+  }
+}
+
+/* Experience */
+.experience-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.exp-item {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 12px;
+}
+.exp-item h3 {
+  margin: 0 0 0.25rem;
+  color: var(--accent);
+}
+.exp-item p {
+  margin: 0.25rem 0;
+  color: var(--muted);
+}
+.exp-item ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+@media (max-width: 900px) {
+  .experience-list {
+    grid-template-columns: 1fr;
+  }
+}
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--card);
+  border: 1px solid rgba(94, 234, 212, 0.2);
+  color: var(--accent);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+.back-to-top:hover {
+  background: rgba(94, 234, 212, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(94, 234, 212, 0.3);
+  box-shadow: 0 4px 20px rgba(94, 234, 212, 0.15);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* small utilities */
+.text-center {
+  text-align: center;
+}
+    </style>
+  </head>
+  <body>
+    <script>
+        // Calculate age automatically from a single birthdate constant
+const BIRTH_DATE = "2005-01-28"; // YYYY-MM-DD (update here if needed)
+
+function calculateAge(birthDate) {
+  const today = new Date();
+  const birth = new Date(birthDate);
+
+  // This year's birthday at local midnight
+  const thisYearBirthday = new Date(
+    today.getFullYear(),
+    birth.getMonth(),
+    birth.getDate(),
+    0,
+    0,
+    0,
+    0
+  );
+
+  let age = today.getFullYear() - birth.getFullYear();
+
+  // If today is before this year's birthday, subtract one
+  if (today < thisYearBirthday) {
+    age--;
+  }
+
+  return age;
+}
+
+function updateAge() {
+  const ageElement = document.getElementById("age");
+  if (ageElement) {
+    ageElement.textContent = calculateAge(BIRTH_DATE);
+  }
+}
+
+// Schedule a precise update at every midnight so the age will increment on the birthday date
+function scheduleMidnightUpdate() {
+  const now = new Date();
+  const nextMidnight = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1,
+    0,
+    0,
+    0,
+    0
+  );
+  const ms = nextMidnight - now;
+  // setTimeout to run once at next midnight, then reschedule recursively
+  setTimeout(() => {
+    updateAge();
+    // schedule the next one
+    scheduleMidnightUpdate();
+  }, ms + 50); // small buffer to ensure we're past midnight
+}
+
+// Small interactions: smooth scroll and contact form demo
+// Matrix rain effect
+class MatrixRain {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.resizeCanvas();
+    this.characters =
+      "ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ";
+    this.fontSize = 16;
+    this.columns = 0;
+    this.drops = [];
+
+    window.addEventListener("resize", () => this.resizeCanvas());
+    this.initDrops();
+    this.animate();
+  }
+
+  resizeCanvas() {
+    this.canvas.width = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+    this.columns = Math.floor(this.canvas.width / this.fontSize);
+    this.initDrops();
+  }
+
+  initDrops() {
+    this.drops = Array(this.columns).fill(1);
+  }
+
+  draw() {
+    this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.ctx.fillStyle = "#0F0";
+    this.ctx.font = this.fontSize + "px monospace";
+
+    for (let i = 0; i < this.drops.length; i++) {
+      const char =
+        this.characters[Math.floor(Math.random() * this.characters.length)];
+      const x = i * this.fontSize;
+      const y = this.drops[i] * this.fontSize;
+
+      // Add glow effect
+      this.ctx.shadowBlur = 8;
+      this.ctx.shadowColor = "#0F0";
+
+      // Fade effect based on position
+      const alpha = 1 - y / this.canvas.height;
+      this.ctx.fillStyle = `rgba(0, 255, 140, ${alpha})`;
+
+      this.ctx.fillText(char, x, y);
+
+      // Reset shadow for next iteration
+      this.ctx.shadowBlur = 0;
+
+      if (y > this.canvas.height && Math.random() > 0.975) {
+        this.drops[i] = 0;
+      }
+      this.drops[i]++;
+    }
+  }
+
+  animate() {
+    this.draw();
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize Matrix effect
+  const canvas = document.getElementById("matrixRain");
+  if (canvas) {
+    new MatrixRain(canvas);
+  }
+  // Update age when page loads
+  updateAge();
+
+  // Schedule precise midnight update for age
+  scheduleMidnightUpdate();
+  // Back to top button functionality
+  const backToTop = document.getElementById("backToTop");
+  if (backToTop) {
+    // Show/hide button based on scroll position
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    });
+
+    // Scroll to top with smooth behavior
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // Setup scroll animation
+  const animateElements = document.querySelectorAll(
+    ".exp-item, .edu-item, .skill, .about-grid, .hero-card, .info-item"
+  );
+  animateElements.forEach((el) => {
+    el.classList.add("scroll-animate");
+  });
+
+  // Setup collapsible sections
+  const sections = document.querySelectorAll(".section-collapsible");
+  sections.forEach((section) => {
+    const header = section.querySelector(".section-header");
+    const content = section.querySelector(".section-content");
+
+    // Set initial state
+    content.style.maxHeight = content.scrollHeight + "px";
+
+    header.addEventListener("click", () => {
+      section.classList.toggle("collapsed");
+      if (section.classList.contains("collapsed")) {
+        content.style.maxHeight = "0px";
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+
+  // Trigger info items animation immediately if in view
+  document.querySelectorAll(".info-item").forEach((item, index) => {
+    item.style.animationDelay = `${(index + 1) * 0.1}s`;
+  }); // Create intersection observer for scroll animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
+
+  // Observe all animate elements
+  animateElements.forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Smooth scroll for in-page links
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const href = a.getAttribute("href");
+      if (href.length > 1) {
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  // Simple contact form handling (no network)
+  const form = document.getElementById("contactForm");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const btn = form.querySelector("button[type=submit]");
+      btn.disabled = true;
+      btn.textContent = "Mengirim...";
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = "Kirim";
+        alert("Terima kasih! Pesan Anda telah disimpan (demo).");
+        form.reset();
+      }, 900);
+    });
+  }
+
+  // Translation / language selector
+  const translations = {
+    en: {
+      /* stats */
+      "stats.lines": "Lines of Code",
+      "stats.commits": "Git Commits",
+      "stats.uptime": "Uptime %",
+      "stats.coffee": "Coffee (ml)",
+
+      "nav.about": "About",
+      "nav.education": "Education",
+      "nav.experience": "Experience",
+      "nav.projects": "Projects",
+      "nav.contact": "Contact",
+      "btn.hire": "Hire me",
+      "hero.greeting": "Hi, I'm Achmad Andi Prayoga.",
+      "hero.role": "Junior IT Support",
+      "hero.bio":
+        "A graduate of Computer Science with strong foundations in programming and application development. Age: {age} years, born in Sidoarjo, passionate about IT and web development.",
+      "hero.cta.experience": "See my experience",
+      "hero.cta.contact": "Contact me",
+      "experience.title": "Work Experience",
+      "education.title": "Education",
+      "skills.title": "Skills",
+      "projects.title": "Projects",
+      "contact.title": "Contact",
+      "project.link.live": "Live Demo",
+      "project.link.code": "Source Code",
+
+      /* quick info */
+      "quick.location": "Sidoarjo",
+      "quick.degree": "B.Sc. Computer Science",
+      "quick.availability": "Available for hire",
+
+      /* identity */
+      "identity.birth.label": "Place, Date of Birth",
+      "identity.birth.value": "Sidoarjo, 28 January 2005",
+      "identity.religion.label": "Religion",
+      "identity.religion.value": "Islam",
+      "identity.height.label": "Height",
+      "identity.height.value": "180 cm",
+      "identity.weight.label": "Weight",
+      "identity.weight.value": "65 kg",
+      "identity.hobby.label": "Hobby",
+      "identity.hobby.value": "Swimming",
+
+      /* experience */
+      "exp.period.label": "Period:",
+      "exp.one.title": "OFERO JX SIDOARJO — Store Staff (Store Boy)",
+      "exp.one.address":
+        "Jl. Diponegoro No.98, Lemah Putro, Lemahputro, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61212",
+      "exp.one.period": "January 2025 - May 2025",
+      "exp.one.resp.1": "Managed daily store sales",
+      "exp.one.resp.2": "Distributed flyers to local households",
+      "exp.one.resp.3": "Maintained shop cleanliness",
+      "exp.one.resp.4":
+        "Handled online sales (social media live, shared promos in groups)",
+
+      "exp.two.title": "Toko Pelangi Stationary — SPB (Sales Promotion Boy)",
+      "exp.two.address":
+        "Jl. Raya Kemantren No.26, RT.7/RW.2, Keputran, Kemantren, Sidoarjo, Sidoarjo Regency, East Java 61273",
+      "exp.two.period": "August 2023 - December 2023",
+      "exp.two.resp.1": "Cleaned shop stands",
+      "exp.two.resp.2": "Applied product labels (barcode) and price tags",
+      "exp.two.resp.3": "Cleaned products",
+      "exp.two.resp.4": "Restocked goods",
+
+      /* education */
+      "edu.period.label": "Period:",
+      "edu.sd.title": "SDN BORO",
+      "edu.sd.address":
+        "Boro, Kec. Tanggulangin, Kabupaten Sidoarjo, Jawa Timur 61272",
+      "edu.sd.period": "2011 - 2017",
+
+      "edu.smp.title": "SMP DHARMAWANITA 7 TANGGULANGIN",
+      "edu.smp.address":
+        "Kalitengah Utara Rt.01 Rw.01, Kalitengah, Kec. Tanggulangin, Kec. Sidoarjo, Prov, Jawa Timur",
+      "edu.smp.period": "2018 - 2019",
+
+      "edu.smk.title": "SMK — SMK ANTARTIKA 2 SIDOARJO",
+      "edu.smk.address":
+        "Jl. Raya Siwalanpanji No.6, Bedrek, Siwalanpanji, Kec. Buduran, Kabupaten Sidoarjo, Jawa Timur 61252",
+      "edu.smk.period": "2020 - 2023",
+      "edu.smk.note.1": "Obtained BNSP Certification",
+      "edu.smk.note.2": "Scouting (Pramuka)",
+
+      "edu.univ.title": "S1 — UNIVERSITAS MUHAMMADIYAH SIDOARJO",
+      "edu.univ.address":
+        "Jl. Mojopahit No.666 B, Sidowayah, Celep, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61215",
+      "edu.univ.period": "2025 - Present",
+      "edu.univ.note.1": "Participating in ASLAB (Laboratory Assistant)",
+      "edu.univ.note.2": "Archery UKM",
+
+      /* skills */
+      "skills.soft.title": "Soft Skills",
+      "skills.soft.team": "Teamwork",
+      "skills.soft.discipline": "Work ethic / Discipline",
+      "skills.soft.communication": "Effective communication",
+
+      "skills.hard.title": "Hard / Software Skills",
+      "skills.hard.ai": "Adobe Illustrator",
+      "skills.hard.indesign": "Adobe InDesign",
+      "skills.hard.lightroom": "Adobe Lightroom",
+      "skills.hard.photoshop": "Adobe Photoshop",
+      "skills.hard.premiere": "Adobe Premiere Pro",
+      "skills.hard.blender": "Blender",
+      "skills.hard.canva": "Canva",
+      "skills.hard.corel": "CorelDraw",
+      "skills.hard.java": "Java",
+      "skills.hard.js": "JavaScript",
+      "skills.hard.ppt": "Microsoft PowerPoint",
+      "skills.hard.word": "Microsoft Word",
+      "skills.hard.python": "Python",
+
+      /* projects */
+      "project.one.title": "Portfolio Website",
+      "project.one.desc":
+        "Personal portfolio website built with HTML, CSS, and JavaScript",
+      "project.one.tag.1": "HTML",
+      "project.one.tag.2": "CSS",
+      "project.one.tag.3": "JavaScript",
+
+      "project.two.title": "Java Calculator App",
+      "project.two.desc":
+        "Scientific calculator with advanced mathematical functions",
+      "project.two.tag.1": "Java",
+      "project.two.tag.2": "JavaFX",
+      "project.two.tag.3": "UI Design",
+
+      "project.three.title": "Python Data Visualization",
+      "project.three.desc":
+        "Data analysis and visualization tool using Python libraries",
+      "project.three.tag.1": "Python",
+      "project.three.tag.2": "Pandas",
+      "project.three.tag.3": "Matplotlib",
+
+      /* contact */
+      "contact.intro":
+        "Want to collaborate? Send a short message — I'll reply.",
+      "contact.form.name": "Name",
+      "contact.form.email": "Email",
+      "contact.form.message": "Message",
+      "contact.form.submit": "Send",
+      "contact.form.reset": "Reset",
+
+      /* dev skills */
+      "devskills.title": "Development Skills",
+      "devskills.frontend": "Front-end Development",
+      "devskills.responsive": "Responsive Design",
+      "devskills.ux": "UX & Visual Design",
+
+      /* footer */
+      "footer.copyright": "© 2025 Achmad Andi Prayoga — Made with ♥",
+    },
+    id: {
+      /* stats */
+      "stats.lines": "Baris Kode",
+      "stats.commits": "Git Commits",
+      "stats.uptime": "Uptime %",
+      "stats.coffee": "Kopi (ml)",
+
+      "nav.about": "About",
+      "nav.education": "Pendidikan",
+      "nav.experience": "Pengalaman",
+      "nav.projects": "Projects",
+      "nav.contact": "Contact",
+      "btn.hire": "Hire me",
+      "hero.greeting": "Hi, Saya Achmad Andi Prayoga.",
+      "hero.role": "Junior IT Support",
+      "hero.bio":
+        "Seorang lulusan S1 Teknik Informatika dengan dasar kuat dalam logika pemrograman dan pengembangan aplikasi. Berusia {age} tahun, kelahiran Sidoarjo, dengan passion di bidang IT dan web development.",
+      "hero.cta.experience": "Lihat pengalaman saya",
+      "hero.cta.contact": "Hubungi",
+      "experience.title": "Pengalaman Kerja",
+      "education.title": "Pendidikan",
+      "skills.title": "Skills",
+      "projects.title": "Projects",
+      "contact.title": "Contact",
+      "project.link.live": "Live Demo",
+      "project.link.code": "Source Code",
+
+      /* quick info */
+      "quick.location": "Sidoarjo",
+      "quick.degree": "S1 Teknik Informatika",
+      "quick.availability": "Available for hire",
+
+      /* identity */
+      "identity.birth.label": "Tempat, Tanggal Lahir",
+      "identity.birth.value": "Sidoarjo, 28 Januari 2005",
+      "identity.religion.label": "Agama",
+      "identity.religion.value": "Islam",
+      "identity.height.label": "Tinggi Badan",
+      "identity.height.value": "180 Cm",
+      "identity.weight.label": "Berat Badan",
+      "identity.weight.value": "65 Kg",
+      "identity.hobby.label": "Hobi",
+      "identity.hobby.value": "Renang",
+
+      /* experience */
+      "exp.period.label": "Periode:",
+      "exp.one.title": "OFERO JX SIDOARJO — Staff Toko (Store Boy)",
+      "exp.one.address":
+        "Jl. Diponegoro No.98, Lemah Putro, Lemahputro, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61212",
+      "exp.one.period": "Januari 2025 - Mei 2025",
+      "exp.one.resp.1": "Mengelola penjualan toko setiap hari",
+      "exp.one.resp.2": "Melakukan penyebaran brosur di setiap kalangan rumah",
+      "exp.one.resp.3": "Membersihkan area toko",
+      "exp.one.resp.4":
+        "Melakukan penjualan online (live di media sosial, share brosur di grup media sosial)",
+
+      "exp.two.title": "Toko Pelangi Stationary — SPB (Sales Promotion Boy)",
+      "exp.two.address":
+        "Jl. Raya Kemantren No.26, RT.7/RW.2, Keputran, Kemantren, Sidoarjo, Sidoarjo Regency, East Java 61273",
+      "exp.two.period": "Agustus 2023 - Desember 2023",
+      "exp.two.resp.1": "Membersihkan stand toko",
+      "exp.two.resp.2":
+        "Memberi label produk (barcode) dan price tag di setiap stand",
+      "exp.two.resp.3": "Membersihkan produk",
+      "exp.two.resp.4": "Merestock barang / produk",
+
+      /* education */
+      "edu.period.label": "Periode:",
+      "edu.sd.title": "SDN BORO",
+      "edu.sd.address":
+        "Boro, Kec. Tanggulangin, Kabupaten Sidoarjo, Jawa Timur 61272",
+      "edu.sd.period": "2011 - 2017",
+
+      "edu.smp.title": "SMP DHARMAWANITA 7 TANGGULANGIN",
+      "edu.smp.address":
+        "Kalitengah Utara Rt.01 Rw.01, Kalitengah, Kec. Tanggulangin, Kec. Sidoarjo, Prov, Jawa Timur",
+      "edu.smp.period": "2018 - 2019",
+
+      "edu.smk.title": "SMK — SMK ANTARTIKA 2 SIDOARJO",
+      "edu.smk.address":
+        "Jl. Raya Siwalanpanji No.6, Bedrek, Siwalanpanji, Kec. Buduran, Kabupaten Sidoarjo, Jawa Timur 61252",
+      "edu.smk.period": "2020 - 2023",
+      "edu.smk.note.1": "Mendapatkan Sertifikasi BNSP",
+      "edu.smk.note.2": "Pramuka",
+
+      "edu.univ.title": "S1 — UNIVERSITAS MUHAMMADIYAH SIDOARJO",
+      "edu.univ.address":
+        "Jl. Mojopahit No.666 B, Sidowayah, Celep, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61215",
+      "edu.univ.period": "2025 - Sekarang",
+      "edu.univ.note.1": "Mengikuti ASLAB (Asisten Laboratorium)",
+      "edu.univ.note.2": "UKM (Panahan)",
+
+      /* skills */
+      "skills.soft.title": "Soft Skills",
+      "skills.soft.team": "Kerja sama tim",
+      "skills.soft.discipline": "Etos kerja / Disiplin",
+      "skills.soft.communication": "Komunikasi efektif",
+
+      "skills.hard.title": "Hard / Software Skills",
+      "skills.hard.ai": "Adobe Illustrator",
+      "skills.hard.indesign": "Adobe InDesign",
+      "skills.hard.lightroom": "Adobe Lightroom",
+      "skills.hard.photoshop": "Adobe Photoshop",
+      "skills.hard.premiere": "Adobe Premiere Pro",
+      "skills.hard.blender": "Blender",
+      "skills.hard.canva": "Canva",
+      "skills.hard.corel": "CorelDraw",
+      "skills.hard.java": "Java",
+      "skills.hard.js": "JavaScript",
+      "skills.hard.ppt": "Microsoft PowerPoint",
+      "skills.hard.word": "Microsoft Word",
+      "skills.hard.python": "Python",
+
+      /* projects */
+      "project.one.title": "Portfolio Website",
+      "project.one.desc":
+        "Personal portfolio website built with HTML, CSS, and JavaScript",
+      "project.one.tag.1": "HTML",
+      "project.one.tag.2": "CSS",
+      "project.one.tag.3": "JavaScript",
+
+      "project.two.title": "Java Calculator App",
+      "project.two.desc":
+        "Scientific calculator with advanced mathematical functions",
+      "project.two.tag.1": "Java",
+      "project.two.tag.2": "JavaFX",
+      "project.two.tag.3": "UI Design",
+
+      "project.three.title": "Python Data Visualization",
+      "project.three.desc":
+        "Data analysis and visualization tool using Python libraries",
+      "project.three.tag.1": "Python",
+      "project.three.tag.2": "Pandas",
+      "project.three.tag.3": "Matplotlib",
+
+      /* contact */
+      "contact.intro":
+        "Want to collaborate? Send a short message — I'll reply.",
+      "contact.form.name": "Name",
+      "contact.form.email": "Email",
+      "contact.form.message": "Message",
+      "contact.form.submit": "Send",
+      "contact.form.reset": "Reset",
+
+      /* dev skills */
+      "devskills.title": "Development Skills",
+      "devskills.frontend": "Front-end Development",
+      "devskills.responsive": "Responsive Design",
+      "devskills.ux": "UX & Visual Design",
+
+      /* footer */
+      "footer.copyright": "© 2025 Achmad Andi Prayoga — Made with ♥",
+    },
+    nl: {
+      /* stats */
+      "stats.lines": "Regels Code",
+      "stats.commits": "Git Commits",
+      "stats.uptime": "Uptime %",
+      "stats.coffee": "Koffie (ml)",
+
+      "nav.about": "Over",
+      "nav.education": "Opleiding",
+      "nav.experience": "Ervaring",
+      "nav.projects": "Projecten",
+      "nav.contact": "Contact",
+      "btn.hire": "Huur mij",
+      "hero.greeting": "Hoi, ik ben Achmad Andi Prayoga.",
+      "hero.role": "Junior IT Support",
+      "hero.bio":
+        "Afgestudeerd in Informatica met een sterke basis in programmeerlogica en applicatieontwikkeling. Leeftijd: {age} jaar, geboren in Sidoarjo, gepassioneerd door IT en webontwikkeling.",
+      "hero.cta.experience": "Bekijk mijn ervaring",
+      "hero.cta.contact": "Neem contact op",
+      "experience.title": "Werkervaring",
+      "education.title": "Opleiding",
+      "skills.title": "Vaardigheden",
+      "projects.title": "Projecten",
+      "contact.title": "Contact",
+      "project.link.live": "Live Demo",
+      "project.link.code": "Broncode",
+
+      /* quick info */
+      "quick.location": "Sidoarjo",
+      "quick.degree": "Bachelor Informatica",
+      "quick.availability": "Beschikbaar voor werk",
+
+      /* identity */
+      "identity.birth.label": "Geboorteplaats, -datum",
+      "identity.birth.value": "Sidoarjo, 28 januari 2005",
+      "identity.religion.label": "Religie",
+      "identity.religion.value": "Islam",
+      "identity.height.label": "Lengte",
+      "identity.height.value": "180 cm",
+      "identity.weight.label": "Gewicht",
+      "identity.weight.value": "65 kg",
+      "identity.hobby.label": "Hobby",
+      "identity.hobby.value": "Zwemmen",
+
+      /* experience */
+      "exp.period.label": "Periode:",
+      "exp.one.title": "OFERO JX SIDOARJO — Winkelmedewerker (Store Boy)",
+      "exp.one.address":
+        "Jl. Diponegoro No.98, Lemah Putro, Lemahputro, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61212",
+      "exp.one.period": "Januari 2025 - Mei 2025",
+      "exp.one.resp.1": "Beheer van dagelijkse winkelverkoop",
+      "exp.one.resp.2": "Flyers verspreiden naar lokale huishoudens",
+      "exp.one.resp.3": "Winkel schoonmaken",
+      "exp.one.resp.4":
+        "Online verkoop afgehandeld (social media live, promoties delen in groepen)",
+
+      "exp.two.title": "Toko Pelangi Stationary — SPB (Sales Promotion Boy)",
+      "exp.two.address":
+        "Jl. Raya Kemantren No.26, RT.7/RW.2, Keputran, Kemantren, Sidoarjo, Sidoarjo Regency, East Java 61273",
+      "exp.two.period": "Augustus 2023 - December 2023",
+      "exp.two.resp.1": "Stands van de winkel schoongemaakt",
+      "exp.two.resp.2": "Productlabels (barcode) en prijskaartjes aangebracht",
+      "exp.two.resp.3": "Producten schoongemaakt",
+      "exp.two.resp.4": "Goederen bijgevuld",
+
+      /* education */
+      "edu.period.label": "Periode:",
+      "edu.sd.title": "SDN BORO",
+      "edu.sd.address":
+        "Boro, Kec. Tanggulangin, Kabupaten Sidoarjo, Jawa Timur 61272",
+      "edu.sd.period": "2011 - 2017",
+
+      "edu.smp.title": "SMP DHARMAWANITA 7 TANGGULANGIN",
+      "edu.smp.address":
+        "Kalitengah Utara Rt.01 Rw.01, Kalitengah, Kec. Tanggulangin, Kec. Sidoarjo, Prov, Jawa Timur",
+      "edu.smp.period": "2018 - 2019",
+
+      "edu.smk.title": "SMK — SMK ANTARTIKA 2 SIDOARJO",
+      "edu.smk.address":
+        "Jl. Raya Siwalanpanji No.6, Bedrek, Siwalanpanji, Kec. Buduran, Kabupaten Sidoarjo, Jawa Timur 61252",
+      "edu.smk.period": "2020 - 2023",
+      "edu.smk.note.1": "BNSP-certificaat behaald",
+      "edu.smk.note.2": "Scouting (Pramuka)",
+
+      "edu.univ.title": "S1 — UNIVERSITAS MUHAMMADIYAH SIDOARJO",
+      "edu.univ.address":
+        "Jl. Mojopahit No.666 B, Sidowayah, Celep, Kec. Sidoarjo, Kabupaten Sidoarjo, Jawa Timur 61215",
+      "edu.univ.period": "2025 - Heden",
+      "edu.univ.note.1": "Deelname aan ASLAB (Laboratoriumassistent)",
+      "edu.univ.note.2": "Archery UKM (boogschieten)",
+
+      /* skills */
+      "skills.soft.title": "Soft Skills",
+      "skills.soft.team": "Teamwork",
+      "skills.soft.discipline": "Arbeidsethos / Discipline",
+      "skills.soft.communication": "Effectieve communicatie",
+
+      "skills.hard.title": "Hard / Software Skills",
+      "skills.hard.ai": "Adobe Illustrator",
+      "skills.hard.indesign": "Adobe InDesign",
+      "skills.hard.lightroom": "Adobe Lightroom",
+      "skills.hard.photoshop": "Adobe Photoshop",
+      "skills.hard.premiere": "Adobe Premiere Pro",
+      "skills.hard.blender": "Blender",
+      "skills.hard.canva": "Canva",
+      "skills.hard.corel": "CorelDraw",
+      "skills.hard.java": "Java",
+      "skills.hard.js": "JavaScript",
+      "skills.hard.ppt": "Microsoft PowerPoint",
+      "skills.hard.word": "Microsoft Word",
+      "skills.hard.python": "Python",
+
+      /* projects */
+      "project.one.title": "Portfolio Website",
+      "project.one.desc":
+        "Persoonlijke portfolio-website gebouwd met HTML, CSS en JavaScript",
+      "project.one.tag.1": "HTML",
+      "project.one.tag.2": "CSS",
+      "project.one.tag.3": "JavaScript",
+
+      "project.two.title": "Java Calculator App",
+      "project.two.desc":
+        "Wetenschappelijke rekenmachine met geavanceerde wiskundige functies",
+      "project.two.tag.1": "Java",
+      "project.two.tag.2": "JavaFX",
+      "project.two.tag.3": "UI-ontwerp",
+
+      "project.three.title": "Python Data Visualization",
+      "project.three.desc":
+        "Data-analyse en visualisatietool met Python-bibliotheken",
+      "project.three.tag.1": "Python",
+      "project.three.tag.2": "Pandas",
+      "project.three.tag.3": "Matplotlib",
+
+      /* contact */
+      "contact.intro":
+        "Wil je samenwerken? Stuur een kort bericht — ik zal antwoorden.",
+      "contact.form.name": "Naam",
+      "contact.form.email": "E-mail",
+      "contact.form.message": "Bericht",
+      "contact.form.submit": "Versturen",
+      "contact.form.reset": "Reset",
+
+      /* dev skills */
+      "devskills.title": "Ontwikkelingsvaardigheden",
+      "devskills.frontend": "Front-end Development",
+      "devskills.responsive": "Responsive Design",
+      "devskills.ux": "UX & Visual Design",
+
+      /* footer */
+      "footer.copyright": "© 2025 Achmad Andi Prayoga — Gemaakt met ♥",
+    },
+  };
+
+  function applyTranslations(lang) {
+    if (!translations[lang]) lang = "id";
+    const dict = translations[lang];
+    const elems = document.querySelectorAll("[data-i18n]");
+    elems.forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      const txt = dict[key];
+      if (!txt) return; // skip missing keys
+      // if text contains {age} placeholder, replace with computed age
+      let out = txt;
+      if (out && out.indexOf("{age}") !== -1) {
+        out = out.replace("{age}", String(calculateAge(BIRTH_DATE)));
+      }
+      // set content (allow HTML for cases like spans)
+      el.innerHTML = out;
+    });
+    // update active button
+    document
+      .querySelectorAll(".lang-btn")
+      .forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
+    // set html class so inline translations (elements with `lang` attribute) show only the active language
+    try {
+      document.documentElement.classList.remove(
+        "site-lang-id",
+        "site-lang-en",
+        "site-lang-nl"
+      );
+      document.documentElement.classList.add("site-lang-" + lang);
+    } catch (e) {
+      /* ignore */
+    }
+    // persist
+    try {
+      localStorage.setItem("siteLang", lang);
+    } catch (e) {}
+  }
+
+  // Initialize and animate stat counters
+  function initStatCounters() {
+    const counters = document.querySelectorAll(".stat-value");
+
+    function updateCounter(counter) {
+      const target = parseFloat(counter.dataset.value);
+      const increment = parseFloat(counter.dataset.increment);
+      const decimals = parseInt(counter.dataset.decimals || "0");
+      let current = parseFloat(counter.textContent);
+
+      // If we hit the target, restart from a bit below
+      if (current >= target) {
+        current = target - target * 0.15; // restart from 85% of target
+      }
+
+      // Increment
+      current += increment;
+
+      // Update display (fixed decimal places if specified)
+      counter.textContent = current.toFixed(decimals);
+
+      // Schedule next update
+      setTimeout(() => {
+        requestAnimationFrame(() => updateCounter(counter));
+      }, 50); // Update every 50ms
+    }
+
+    // Start each counter
+    counters.forEach((counter) => {
+      counter.textContent = "0";
+      updateCounter(counter);
+    });
+  }
+
+  // Call counter init after a small delay to let other stuff load
+  setTimeout(initStatCounters, 500);
+
+  // init language selector
+  const langSelector = document.getElementById("langSelector");
+  const saved = (function () {
+    try {
+      return localStorage.getItem("siteLang");
+    } catch (e) {
+      return null;
+    }
+  })();
+  let initialLang =
+    saved ||
+    (navigator.language && navigator.language.startsWith("en")
+      ? "en"
+      : navigator.language && navigator.language.startsWith("nl")
+      ? "nl"
+      : "id");
+  // ensure age updated before applying translations so {age} is available
+  updateAge();
+  applyTranslations(initialLang);
+
+  if (langSelector) {
+    langSelector.addEventListener("click", (e) => {
+      const btn = e.target.closest(".lang-btn");
+      if (!btn) return;
+      const lang = btn.dataset.lang;
+      applyTranslations(lang);
+    });
+  }
+
+  // Profile image switcher
+  (function initProfileSwitcher() {
+    const profileImg = document.getElementById("profilePhoto");
+    const thumbs = document.querySelectorAll(".profile-switch .thumb");
+    if (!profileImg || !thumbs.length) return;
+
+    // load saved choice
+    try {
+      const saved = localStorage.getItem("profilePhoto");
+      if (saved) profileImg.src = saved;
+    } catch (e) {}
+
+    // update active thumbnail based on current src
+    function refreshActive() {
+      thumbs.forEach((t) => {
+        const src = t.dataset.src;
+        const isActive = normalizePath(profileImg.src).endsWith(
+          normalizePath(src)
+        );
+        t.classList.toggle("active", isActive);
+        t.setAttribute("aria-pressed", String(isActive));
+      });
+    }
+
+    function normalizePath(p) {
+      // keep only file name part
+      try {
+        return p.split("/").pop().toLowerCase();
+      } catch (e) {
+        return String(p).toLowerCase();
+      }
+    }
+
+    refreshActive();
+
+    thumbs.forEach((t) => {
+      t.addEventListener("click", () => {
+        const src = t.dataset.src;
+        if (!src) return;
+        profileImg.src = src;
+        // update UI
+        refreshActive();
+        try {
+          localStorage.setItem("profilePhoto", src);
+        } catch (e) {}
+      });
+      t.addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter" || ev.key === " ") t.click();
+      });
+    });
+  })();
+
+  // Contact CTA -> jump to contact (kept after translations)
+  const contactBtn = document.getElementById("contactBtn");
+  if (contactBtn) {
+    contactBtn.addEventListener("click", () => {
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+});
+
+    </script>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#">Achmad Andi Prayoga</a>
+        <nav class="nav">
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#education" data-i18n="nav.education">Pendidikan</a>
+          <a href="#experience" data-i18n="nav.experience">Pengalaman</a>
+          <a href="#projects" data-i18n="nav.projects">Projects</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+        <div class="lang-selector" id="langSelector" aria-label="Language selector">
+          <!-- Indonesia: red over white -->
+          <button class="lang-btn" data-lang="id" title="Indonesia" aria-label="Bahasa Indonesia">
+            <span class="flag">
+              <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                <defs><clipPath id="c-id"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+                <g clip-path="url(#c-id)">
+                  <rect width="36" height="18" y="0" fill="#E30A17"/>
+                  <rect width="36" height="18" y="18" fill="#FFFFFF"/>
+                </g>
+              </svg>
+            </span>
+          </button>
+          <!-- English (United Kingdom) simplified -->
+          <button class="lang-btn" data-lang="en" title="English" aria-label="English">
+            <span class="flag">
+              <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                <defs><clipPath id="c-en"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+                <g clip-path="url(#c-en)">
+                  <rect width="36" height="36" fill="#012169"/>
+                  <g stroke="#fff" stroke-width="3">
+                    <path d="M0 18h36M18 0v36"/>
+                  </g>
+                  <g stroke="#C8102E" stroke-width="2">
+                    <path d="M0 18h36M18 0v36"/>
+                    <path d="M0 0l36 36M36 0L0 36" stroke="#C8102E" stroke-width="2.5"/>
+                  </g>
+                </g>
+              </svg>
+            </span>
+          </button>
+          <!-- Netherlands: red white blue horizontal -->
+          <button class="lang-btn" data-lang="nl" title="Nederlands" aria-label="Nederlands">
+            <span class="flag">
+              <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                <defs><clipPath id="c-nl"><circle cx="18" cy="18" r="18"/></clipPath></defs>
+                <g clip-path="url(#c-nl)">
+                  <rect width="36" height="12" y="0" fill="#AE1C28"/>
+                  <rect width="36" height="12" y="12" fill="#FFFFFF"/>
+                  <rect width="36" height="12" y="24" fill="#21468B"/>
+                </g>
+              </svg>
+            </span>
+          </button>
+        <!-- header social links removed — social links are shown in footer only -->
+        <button class="btn btn-primary" id="contactBtn">
+          <span data-i18n="btn.hire">Hire me</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <div class="hero-info-card">
+              <div class="hero-header">
+                <img
+                  id="profilePhoto"
+                  class="profile-photo"
+                  src="profile 2.jpg"
+                  alt="Foto profil Achmad Andi Prayoga"
+                />
+                <div class="profile-switch" aria-label="Switch profile image">
+                  <!-- Thumb: with suit -->
+                  <button type="button" class="thumb active" data-src="profile 2.jpg" aria-pressed="true" title="Berkemeja / With suit">
+                    <img src="profile 2.jpg" alt="Photo with suit" />
+                  </button>
+                  <!-- Thumb: without suit -->
+                  <button type="button" class="thumb" data-src="profile.jpg" aria-pressed="false" title="Tanpa jas / Without suit">
+                    <img src="profile.jpg" alt="Photo without suit" />
+                  </button>
+                </div>
+                <div class="hero-heading">
+                  <h1 data-i18n="hero.greeting">Hi, Saya Achmad Andi Prayoga.</h1>
+                  <p class="muted small" data-i18n="hero.role">Junior IT Support</p>
+                </div>
+              </div>
+
+              <div class="hero-bio">
+                <p class="bio-text" data-i18n="hero.bio">
+                  Seorang lulusan S1 Teknik Informatika dengan dasar kuat dalam
+                  logika pemrograman dan pengembangan aplikasi. Berusia
+                  <span id="age"></span> tahun, kelahiran Sidoarjo, dengan
+                  passion di bidang IT dan web development.
+                </p>
+
+                <div class="quick-info">
+                  <span class="info-chip" data-i18n="quick.location"
+                    ><i class="info-icon">📍</i> Sidoarjo</span
+                  >
+                  <span class="info-chip" data-i18n="quick.degree"
+                    ><i class="info-icon">🎓</i> S1 Teknik Informatika</span
+                  >
+                  <span class="info-chip" data-i18n="quick.availability"
+                    ><i class="info-icon">💼</i> Available for hire</span
+                  >
+                </div>
+                <!-- Data Diri (moved here) -->
+                <div class="section-collapsible info-section scroll-animate-delay-1">
+                  <div class="section-header">
+                    <h3 data-i18n="personal.title">
+                      <span lang="id">Data Diri</span>
+                      <span lang="en" class="translation">Personal Info</span>
+                      <span lang="nl" class="translation">Persoonlijke gegevens</span>
+                    </h3>
+                    <svg
+                      class="toggle-icon"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path
+                        d="M7 10l5 5 5-5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </div>
+                  <div class="section-content">
+                    <div class="info-grid">
+                      <div class="info-item">
+                        <div class="info-label" data-i18n="identity.birth.label">
+                          <span lang="id">Tempat, Tanggal Lahir</span>
+                          <span lang="en" class="translation">Place, Date of Birth</span>
+                          <span lang="nl" class="translation">Geboorteplaats en datum</span>
+                        </div>
+                        <div class="info-value" data-i18n="identity.birth.value">
+                          <span lang="id">Sidoarjo, 28 Januari 2005</span>
+                          <div class="translation muted small" lang="en">Sidoarjo, 28 January 2005</div>
+                          <div class="translation muted small" lang="nl">Sidoarjo, 28 januari 2005</div>
+                        </div>
+                      </div>
+
+                      <div class="info-item">
+                        <div class="info-label" data-i18n="identity.religion.label">
+                          <span lang="id">Agama</span>
+                          <span lang="en" class="translation">Religion</span>
+                          <span lang="nl" class="translation">Religie</span>
+                        </div>
+                        <div class="info-value" data-i18n="identity.religion.value">
+                          <span lang="id">Islam</span>
+                          <div class="translation muted small" lang="en">Islam</div>
+                          <div class="translation muted small" lang="nl">Islam</div>
+                        </div>
+                      </div>
+
+                      <div class="info-item">
+                        <div class="info-label" data-i18n="identity.height.label">
+                          <span lang="id">Tinggi Badan</span>
+                          <span lang="en" class="translation">Height</span>
+                          <span lang="nl" class="translation">Lengte</span>
+                        </div>
+                        <div class="info-value" data-i18n="identity.height.value">
+                          <span lang="id">180 Cm</span>
+                          <div class="translation muted small" lang="en">180 cm</div>
+                          <div class="translation muted small" lang="nl">180 cm</div>
+                        </div>
+                      </div>
+
+                      <div class="info-item">
+                        <div class="info-label" data-i18n="identity.weight.label">
+                          <span lang="id">Berat Badan</span>
+                          <span lang="en" class="translation">Weight</span>
+                          <span lang="nl" class="translation">Gewicht</span>
+                        </div>
+                        <div class="info-value" data-i18n="identity.weight.value">
+                          <span lang="id">65 Kg</span>
+                          <div class="translation muted small" lang="en">65 kg</div>
+                          <div class="translation muted small" lang="nl">65 kg</div>
+                        </div>
+                      </div>
+
+                      <div class="info-item">
+                        <div class="info-label" data-i18n="identity.hobby.label">
+                          <span lang="id">Hobi</span>
+                          <span lang="en" class="translation">Hobby</span>
+                          <span lang="nl" class="translation">Hobby</span>
+                        </div>
+                        <div class="info-value" data-i18n="identity.hobby.value">
+                          <span lang="id">Renang</span>
+                          <div class="translation muted small" lang="en">Swimming</div>
+                          <div class="translation muted small" lang="nl">Zwemmen</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-actions scroll-animate-delay-2">
+                <a class="btn btn-ghost" href="#experience" data-i18n="hero.cta.experience">Lihat pengalaman saya</a>
+                <a class="btn btn-primary" href="#contact" data-i18n="hero.cta.contact">Hubungi</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      
+  <section id="experience" class="container experience">
+        <h2 data-i18n="experience.title">Pengalaman Kerja</h2>
+        <div class="experience-list">
+          <article class="exp-item">
+            <h3 data-i18n="exp.one.title">
+              OFERO JX SIDOARJO — Staff Toko (Store Boy)
+            </h3>
+            <p class="muted" data-i18n="exp.one.address">
+              Jl. Diponegoro No.98, Lemah Putro, Lemahputro, Kec. Sidoarjo,
+              Kabupaten Sidoarjo, Jawa Timur 61212
+            </p>
+            <p>
+              <strong data-i18n="exp.period.label">Periode:</strong>
+              <span data-i18n="exp.one.period">Januari 2025 - Mei 2025</span>
+            </p>
+            <ul>
+              <li data-i18n="exp.one.resp.1">
+                Mengelola penjualan toko setiap hari
+              </li>
+              <li data-i18n="exp.one.resp.2">
+                Melakukan penyebaran brosur di setiap kalangan rumah
+              </li>
+              <li data-i18n="exp.one.resp.3">Membersihkan area toko</li>
+              <li data-i18n="exp.one.resp.4">
+                Melakukan penjualan online (live di media sosial, share brosur
+                di grup media sosial)
+              </li>
+            </ul>
+          </article>
+
+          <article class="exp-item">
+            <h3 data-i18n="exp.two.title">
+              Toko Pelangi Stationary — SPB (Sales Promotion Boy)
+            </h3>
+            <p class="muted" data-i18n="exp.two.address">
+              Jl. Raya Kemantren No.26, RT.7/RW.2, Keputran, Kemantren,
+              Sidoarjo, Sidoarjo Regency, East Java 61273
+            </p>
+            <p>
+              <strong data-i18n="exp.period.label">Periode:</strong>
+              <span data-i18n="exp.two.period"
+                >Agustus 2023 - Desember 2023</span
+              >
+            </p>
+            <ul>
+              <li data-i18n="exp.two.resp.1">Membersihkan stand toko</li>
+              <li data-i18n="exp.two.resp.2">
+                Memberi label produk (barcode) dan price tag di setiap stand
+              </li>
+              <li data-i18n="exp.two.resp.3">Membersihkan produk</li>
+              <li data-i18n="exp.two.resp.4">Merestock barang / produk</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="education" class="container education">
+        <h2 data-i18n="education.title">Pendidikan</h2>
+        <div class="education-list">
+          <article class="edu-item">
+            <h3 data-i18n="edu.sd.title">SDN BORO</h3>
+            <p data-i18n="edu.sd.address">
+              Boro, Kec. Tanggulangin, Kabupaten Sidoarjo, Jawa Timur 61272
+            </p>
+            <p>
+              <strong data-i18n="edu.period.label">Periode:</strong>
+              <span data-i18n="edu.sd.period">2011 - 2017</span>
+            </p>
+          </article>
+
+          <article class="edu-item">
+            <h3 data-i18n="edu.smp.title">SMP DHARMAWANITA 7 TANGGULANGIN</h3>
+            <p data-i18n="edu.smp.address">
+              Kalitengah Utara Rt.01 Rw.01, Kalitengah, Kec. Tanggulangin, Kec.
+              Sidoarjo, Prov, Jawa Timur
+            </p>
+            <p>
+              <strong data-i18n="edu.period.label">Periode:</strong>
+              <span data-i18n="edu.smp.period">2018 - 2019</span>
+            </p>
+          </article>
+
+          <article class="edu-item">
+            <h3 data-i18n="edu.smk.title">SMK — SMK ANTARTIKA 2 SIDOARJO</h3>
+            <p data-i18n="edu.smk.address">
+              Jl. Raya Siwalanpanji No.6, Bedrek, Siwalanpanji, Kec. Buduran,
+              Kabupaten Sidoarjo, Jawa Timur 61252
+            </p>
+            <p>
+              <strong data-i18n="edu.period.label">Periode:</strong>
+              <span data-i18n="edu.smk.period">2020 - 2023</span>
+            </p>
+            <ul>
+              <li data-i18n="edu.smk.note.1">Mendapatkan Sertifikasi BNSP</li>
+              <li data-i18n="edu.smk.note.2">Pramuka</li>
+            </ul>
+          </article>
+
+          <article class="edu-item">
+            <h3 data-i18n="edu.univ.title">
+              S1 — UNIVERSITAS MUHAMMADIYAH SIDOARJO
+            </h3>
+            <p data-i18n="edu.univ.address">
+              Jl. Mojopahit No.666 B, Sidowayah, Celep, Kec. Sidoarjo, Kabupaten
+              Sidoarjo, Jawa Timur 61215
+            </p>
+            <p>
+              <strong data-i18n="edu.period.label">Periode:</strong>
+              <span data-i18n="edu.univ.period">2025 - Sekarang</span>
+            </p>
+            <ul>
+              <li data-i18n="edu.univ.note.1">
+                Mengikuti ASLAB (Asisten Laboratorium)
+              </li>
+              <li data-i18n="edu.univ.note.2">UKM (Panahan)</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="container skills">
+        <h2 data-i18n="skills.title">Skills</h2>
+
+        <div class="skills-block">
+          <h3 data-i18n="skills.soft.title">Soft Skills</h3>
+          <div class="skills-grid soft-grid">
+            <div class="skill">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="7"
+                  r="3"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M4 20c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span data-i18n="skills.soft.team">Kerja sama tim</span>
+            </div>
+            <div class="skill">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="3"
+                  y="4"
+                  width="18"
+                  height="14"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path d="M3 10h18" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+              <span data-i18n="skills.soft.discipline">Etos kerja / Disiplin</span>
+            </div>
+            <div class="skill">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 8h18v8H3z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M7 12h10"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              <span data-i18n="skills.soft.communication">Komunikasi efektif</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-block">
+          <h3 data-i18n="skills.hard.title">Hard / Software Skills</h3>
+          <div class="skills-grid software-grid">
+            <!-- Design / Adobe -->
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="3"
+                  fill="currentColor"
+                /></svg
+              ><span data-i18n="skills.hard.ai">Adobe Illustrator</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" fill="currentColor" /></svg
+              ><span data-i18n="skills.hard.indesign">Adobe InDesign</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect
+                  x="2"
+                  y="3"
+                  width="20"
+                  height="14"
+                  rx="2"
+                  fill="currentColor"
+                /></svg
+              ><span data-i18n="skills.hard.lightroom">Adobe Lightroom</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M3 4h18v7H3z" fill="currentColor" /></svg
+              ><span data-i18n="skills.hard.photoshop">Adobe Photoshop</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M3 5h18v11H3z" fill="currentColor" /></svg
+              ><span data-i18n="skills.hard.premiere">Adobe Premiere Pro</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4z" fill="currentColor" /></svg
+              ><span data-i18n="skills.hard.blender">Blender</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" fill="currentColor" /></svg
+              ><span data-i18n="skills.hard.canva">Canva</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="18"
+                  rx="2"
+                  fill="currentColor"
+                /></svg
+              ><span data-i18n="skills.hard.corel">CorelDraw</span>
+            </div>
+
+            <!-- Programming / Office -->
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4z" fill="currentColor" /></svg
+              ><span data-i18n="skills.hard.java">Java</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path
+                  d="M6 4l6 8-6 8"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span data-i18n="skills.hard.js">JavaScript</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="14"
+                  rx="2"
+                  fill="currentColor"
+                /></svg
+              ><span data-i18n="skills.hard.ppt">Microsoft PowerPoint</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <rect
+                  x="3"
+                  y="3"
+                  width="18"
+                  height="14"
+                  rx="2"
+                  fill="currentColor"
+                /></svg
+              ><span data-i18n="skills.hard.word">Microsoft Word</span>
+            </div>
+            <div class="skill">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path
+                  d="M12 3c3 0 5 2 5 5 0 3-2 4-5 6-3-2-5-3-5-6 0-3 2-5 5-5z"
+                  fill="currentColor"
+                /></svg
+              ><span data-i18n="skills.hard.python">Python</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="projects" class="container projects">
+        <h2 data-i18n="projects.title" class="with-glow">Projects</h2>
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project">
+            <div class="project-thumb">
+              <img src="project1.jpg" alt="Project 1" class="project-image" />
+            </div>
+            <div class="project-content">
+                    <h3 data-i18n="project.one.title">Portfolio Website</h3>
+                    <p class="muted" data-i18n="project.one.desc">
+                      Personal portfolio website built with HTML, CSS, and JavaScript
+                    </p>
+              <div class="project-tags">
+                      <span class="tag" data-i18n="project.one.tag.1">HTML</span>
+                      <span class="tag" data-i18n="project.one.tag.2">CSS</span>
+                      <span class="tag" data-i18n="project.one.tag.3">JavaScript</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link" title="View Live">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M15 3h6v6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 14L21 3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span data-i18n="project.link.live">Live Demo</span>
+                </a>
+                <a href="#" class="project-link" title="View Code">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span data-i18n="project.link.code">Source Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project">
+            <div class="project-thumb">
+              <img src="project2.jpg" alt="Project 2" class="project-image" />
+            </div>
+            <div class="project-content">
+                    <h3 data-i18n="project.two.title">Java Calculator App</h3>
+                    <p class="muted" data-i18n="project.two.desc">Scientific calculator with advanced mathematical functions</p>
+              <div class="project-tags">
+                      <span class="tag" data-i18n="project.two.tag.1">Java</span>
+                      <span class="tag" data-i18n="project.two.tag.2">JavaFX</span>
+                      <span class="tag" data-i18n="project.two.tag.3">UI Design</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link" title="View Live">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M15 3h6v6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 14L21 3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span data-i18n="project.link.live">Live Demo</span>
+                </a>
+                <a href="#" class="project-link" title="View Code">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span data-i18n="project.link.code">Source Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project">
+            <div class="project-thumb">
+              <img src="project3.jpg" alt="Project 3" class="project-image" />
+            </div>
+            <div class="project-content">
+                    <h3 data-i18n="project.three.title">Python Data Visualization</h3>
+                    <p class="muted" data-i18n="project.three.desc">Data analysis and visualization tool using Python libraries</p>
+              <div class="project-tags">
+                      <span class="tag" data-i18n="project.three.tag.1">Python</span>
+                      <span class="tag" data-i18n="project.three.tag.2">Pandas</span>
+                      <span class="tag" data-i18n="project.three.tag.3">Matplotlib</span>
+              </div>
+              <div class="project-links">
+                <a href="#" class="project-link" title="View Live">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M15 3h6v6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 14L21 3"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span data-i18n="project.link.live">Live Demo</span>
+                </a>
+                <a href="#" class="project-link" title="View Code">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span data-i18n="project.link.code">Source Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="container contact">
+        <div class="contact-grid">
+          <div class="contact-form-section">
+            <h2 data-i18n="contact.title">Contact</h2>
+            <p data-i18n="contact.intro">
+              Ingin berkolaborasi? Kirim pesan singkat — saya akan membalas.
+            </p>
+            <form id="contactForm" class="contact-form">
+              <label>
+                <span data-i18n="contact.form.name">Nama</span>
+                <input type="text" name="name" required />
+              </label>
+              <label>
+                <span data-i18n="contact.form.email">Email</span>
+                <input type="email" name="email" required />
+              </label>
+              <label>
+                <span data-i18n="contact.form.message">Pesan</span>
+                <textarea name="message" rows="4" required></textarea>
+              </label>
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit"><span data-i18n="contact.form.submit">Kirim</span></button>
+                <button class="btn btn-ghost" type="reset"><span data-i18n="contact.form.reset">Reset</span></button>
+              </div>
+            </form>
+          </div>
+          <div class="dev-skills-section">
+            <h3 data-i18n="devskills.title">Development Skills</h3>
+            <ul class="dev-skills-list">
+              <li data-i18n="devskills.frontend">Front-end Development</li>
+              <li data-i18n="devskills.responsive">Responsive Design</li>
+              <li data-i18n="devskills.ux">UX & Visual Design</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <small data-i18n="footer.copyright">© 2025 Achmad Andi Prayoga — Dibuat dengan ♥</small>
+          <div class="social-links">
+            <a
+              href="https://www.tiktok.com/@lxynnnn._"
+              target="_blank"
+              class="social-link"
+              title="TikTok"
+            >
+              <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15 4.5v6c2.5 0 4.5-1.5 5.5-3.5h-3v-3h4.3c.1.3.2.7.2 1v9.8c0 4-3.3 7.2-7.3 7.2-4 0-7.2-3.3-7.2-7.2s3.3-7.2 7.2-7.2v3c-2.3 0-4.2 1.9-4.2 4.2s1.9 4.2 4.2 4.2 4.2-1.9 4.2-4.2V4.5h-3.9z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span class="social-name">TikTok</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/achmad-andi-prayoga-a27389398/"
+              target="_blank"
+              class="social-link"
+              title="LinkedIn"
+            >
+              <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11.5 20h-3v-11h3v11zm-1.5-12.3c-1 0-1.8-.8-1.8-1.8s.8-1.8 1.8-1.8 1.8.8 1.8 1.8-.8 1.8-1.8 1.8zm13 12.3h-3v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7h-3v-11h2.9v1.5h.1c.4-.8 1.4-1.6 2.8-1.6 3 0 3.6 2 3.6 4.6v6.5z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span class="social-name">LinkedIn</span>
+            </a>
+            <a
+              href="mailto:achmadandiprayoga31@gmail.com"
+              target="_blank"
+              class="social-link"
+              title="Email"
+            >
+              <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M4 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4zm0-2a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H4z"
+                  fill="currentColor"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.5 6.5A1 1 0 0 1 4 6h16a1 1 0 0 1 .8.4l-8.8 6.8-8.8-6.8a1 1 0 0 1 .3-.4z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span class="social-name">Email</span>
+            </a>
+            <a
+              href="https://wa.me/6289652926828"
+              target="_blank"
+              class="social-link"
+              title="WhatsApp"
+            >
+              <svg
+                class="social-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 2C6.48 2 2 6.48 2 12c0 1.61.39 3.13 1.07 4.47L2 21l4.53-1.07C7.87 20.61 9.39 21 11 21c5.52 0 10-4.48 10-10S17.52 2 12 2zm4.77 14.07c-.34.95-1.69 1.73-2.77 1.96-.73.15-1.68.27-4.88-.98-4.09-1.6-6.73-5.53-6.93-5.78-.2-.25-1.67-2.22-1.67-4.24 0-2.02 1.06-3.01 1.44-3.42.38-.41.82-.51 1.1-.51.27 0 .54 0 .78.01.24.01.56-.09.88.67.32.77 1.09 2.67 1.19 2.86.1.19.17.41.03.65-.13.24-.2.39-.4.61-.19.22-.4.49-.57.66-.19.19-.39.4-.17.76.22.36.99 1.56 2.13 2.53 1.46 1.25 2.69 1.64 3.07 1.82.38.18.6.15.82-.09.22-.24.95-1.11 1.2-1.49.25-.38.5-.32.84-.19.34.13 2.18 1.03 2.56 1.21.38.19.63.28.72.43.09.15.09.9-.25 1.85z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span class="social-name">WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <button
+      id="backToTop"
+      class="back-to-top"
+      title="Kembali ke atas"
+      aria-label="Kembali ke atas halaman"
+    >
+      <svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 20V4M5 11l7-7 7 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
